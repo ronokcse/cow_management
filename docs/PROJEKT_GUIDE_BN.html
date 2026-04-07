@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>গরু খামার হিসাব — ডকুমেন্টেশন</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--bg: #f4f6f8;
+			--card: #fff;
+			--text: #1a1a1a;
+			--muted: #5c6370;
+			--accent: #198754;
+			--border: #e2e6ea;
+		}
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			font-family: "Noto Sans Bengali", "Segoe UI", system-ui, sans-serif;
+			background: var(--bg);
+			color: var(--text);
+			line-height: 1.65;
+			font-size: 1.05rem;
+		}
+		.wrap {
+			max-width: 52rem;
+			margin: 0 auto;
+			padding: 1.5rem 1.25rem 3rem;
+		}
+		header.doc-head {
+			background: linear-gradient(135deg, #157347 0%, #20c997 100%);
+			color: #fff;
+			padding: 2rem 1.25rem;
+			margin: -1.5rem -1.25rem 2rem;
+			border-radius: 0 0 1rem 1rem;
+			box-shadow: 0 4px 20px rgba(21, 115, 71, 0.25);
+		}
+		header.doc-head h1 {
+			margin: 0 0 0.5rem;
+			font-size: 1.65rem;
+			font-weight: 700;
+		}
+		header.doc-head p {
+			margin: 0;
+			opacity: 0.95;
+			font-size: 0.98rem;
+		}
+		.nav-links {
+			margin-top: 1rem;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+		.nav-links a {
+			display: inline-block;
+			background: rgba(255,255,255,0.2);
+			color: #fff;
+			text-decoration: none;
+			padding: 0.35rem 0.85rem;
+			border-radius: 999px;
+			font-size: 0.9rem;
+		}
+		.nav-links a:hover { background: rgba(255,255,255,0.35); }
+		h2 {
+			font-size: 1.25rem;
+			font-weight: 700;
+			margin: 2rem 0 0.75rem;
+			padding-bottom: 0.35rem;
+			border-bottom: 2px solid var(--accent);
+			color: #0d3d26;
+		}
+		h3 {
+			font-size: 1.05rem;
+			font-weight: 600;
+			margin: 1.25rem 0 0.5rem;
+			color: #1e4d35;
+		}
+		p { margin: 0.65rem 0; }
+		hr {
+			border: none;
+			border-top: 1px solid var(--border);
+			margin: 1.75rem 0;
+		}
+		.card {
+			background: var(--card);
+			border-radius: 0.65rem;
+			padding: 1rem 1.15rem;
+			box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+			margin: 1rem 0;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			font-size: 0.95rem;
+			margin: 0.75rem 0;
+		}
+		th, td {
+			border: 1px solid var(--border);
+			padding: 0.55rem 0.65rem;
+			text-align: left;
+			vertical-align: top;
+		}
+		th {
+			background: #e8f5ef;
+			font-weight: 600;
+		}
+		tr:nth-child(even) td { background: #fafbfc; }
+		code, .file-path {
+			font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+			font-size: 0.88em;
+			background: #eef1f4;
+			padding: 0.1em 0.35em;
+			border-radius: 4px;
+		}
+		pre.tree {
+			background: #1e2937;
+			color: #e2e8f0;
+			padding: 1rem 1.15rem;
+			border-radius: 0.5rem;
+			overflow-x: auto;
+			font-size: 0.82rem;
+			line-height: 1.5;
+			margin: 0.75rem 0;
+		}
+		pre.tree code { background: none; padding: 0; color: inherit; }
+		ul.steps {
+			margin: 0.5rem 0;
+			padding-left: 1.35rem;
+		}
+		ul.steps li { margin: 0.4rem 0; }
+		.flow {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+			gap: 0.35rem 0.5rem;
+			margin: 1rem 0;
+			padding: 1rem;
+			background: var(--card);
+			border-radius: 0.65rem;
+			border: 1px solid var(--border);
+		}
+		.flow .box {
+			background: #e8f5ef;
+			border: 1px solid #b8dcc8;
+			padding: 0.45rem 0.75rem;
+			border-radius: 0.4rem;
+			font-size: 0.9rem;
+			white-space: nowrap;
+		}
+		.flow .arrow { color: var(--muted); font-weight: 600; }
+		.note {
+			font-size: 0.92rem;
+			color: var(--muted);
+			margin-top: 1rem;
+			padding-top: 1rem;
+			border-top: 1px dashed var(--border);
+		}
+		strong { font-weight: 600; }
+		footer {
+			margin-top: 2.5rem;
+			padding-top: 1rem;
+			border-top: 1px solid var(--border);
+			font-size: 0.9rem;
+			color: var(--muted);
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<header class="doc-head">
+			<h1>গরু খামার হিসাব — প্রজেক্ট ডকুমেন্টেশন (ডেমো গাইড)</h1>
+			<p>এই পেজটি ব্রাউজারে খুলে পড়তে পারো। মূল অ্যাপ চালু করতে নিচের লিঙ্ক ব্যবহার করো।</p>
+			<div class="nav-links">
+				<a href="../index.php">← মূল অ্যাপ (ড্যাশবোর্ড)</a>
+				<a href="PROJEKT_GUIDE_BN.md">Markdown সোর্স (.md)</a>
+			</div>
+		</header>
+
+		<p>এই ডকুমেন্টে বোঝানো হয়েছে <strong>এই সফটওয়্যারটা কী</strong>, <strong>কোড কোথায় আছে</strong>, আর <strong>তুমি দৈনন্দিন কাজগুলো কীভাবে করবে</strong>।</p>
+
+		<hr>
+
+		<h2>১. সংক্ষেপে কী করে?</h2>
+		<p>এটি একটি <strong>ওয়েব অ্যাপ</strong> (CodeIgniter 3 + MySQL)। তুমি এখানে রাখতে পারো:</p>
+		<div class="card">
+			<table>
+				<thead>
+					<tr><th>কাজ</th><th>মেনুতে নাম</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>খামারে কত টাকা বিনিয়োগ করেছো</td><td><strong>বিনিয়োগ</strong></td></tr>
+					<tr><td>কোন ধরনের খাবার আছে (ঘাস, খড়…)</td><td><strong>খাদ্যের ধরন</strong></td></tr>
+					<tr><td>বাজার থেকে খাবার কিনলে কত কেজি, কত টাকা</td><td><strong>খাদ্য ক্রয়</strong></td></tr>
+					<tr><td>প্রতিদিন গরু কত কেজি খাবার খেল</td><td><strong>দৈনিক খাদ্য</strong></td></tr>
+					<tr><td>দুধ বিক্রি / গরু বিক্রি ইত্যাদি আয়</td><td><strong>আয়</strong></td></tr>
+					<tr><td>চিকিৎসা, শ্রমিক ইত্যাদি খরচ</td><td><strong>অন্যান্য খরচ</strong></td></tr>
+				</tbody>
+			</table>
+		</div>
+		<p><strong>ড্যাশবোর্ড</strong> এ সব মিলিয়ে সারাংশ ও <strong>নেট লাভ/ক্ষতি</strong> দেখাবে।</p>
+
+		<hr>
+
+		<h2>২. টেকনিক্যালভাবে কী দিয়ে বানানো?</h2>
+		<ul class="steps">
+			<li><strong>Framework:</strong> CodeIgniter 3 (MVC প্যাটার্ন)</li>
+			<li><strong>ডাটাবেজ:</strong> MySQL (ডাটাবেজ নাম: <code>cow_farm</code>)</li>
+			<li><strong>ফ্রন্ট:</strong> HTML + Bootstrap 5 (CDN)</li>
+		</ul>
+		<p><strong>MVC মানে:</strong></p>
+		<ul class="steps">
+			<li><strong>Model</strong> (<code>application/models/</code>) — ডাটাবেজ থেকে ডেটা আনা/সেভ করা</li>
+			<li><strong>Controller</strong> (<code>application/controllers/</code>) — লজিক, ফর্ম চেক, মডেল কল</li>
+			<li><strong>View</strong> (<code>application/views/</code>) — ইউজার যা দেখে (টেবিল, ফর্ম)</li>
+		</ul>
+		<p>একটা রিকোয়েস্ট এভাবে যায়:</p>
+		<div class="flow" aria-label="রিকোয়েস্ট ফ্লো">
+			<span class="box">ব্রাউজার</span>
+			<span class="arrow">→</span>
+			<span class="box">CodeIgniter</span>
+			<span class="arrow">→</span>
+			<span class="box">Controller</span>
+			<span class="arrow">→</span>
+			<span class="box">Model</span>
+			<span class="arrow">→</span>
+			<span class="box">MySQL</span>
+		</div>
+		<div class="flow">
+			<span class="box">Controller</span>
+			<span class="arrow">→</span>
+			<span class="box">View</span>
+			<span class="arrow">→</span>
+			<span class="box">ব্রাউজার</span>
+		</div>
+
+		<hr>
+
+		<h2>৩. ফোল্ডার স্ট্রাকচার (মূল জায়গা)</h2>
+		<pre class="tree"><code>cow/
+├── index.php                 # সব রিকোয়েস্ট এখান দিয়ে ঢোকে
+├── application/
+│   ├── config/
+│   │   ├── database.php      # MySQL হোস্ট, ইউজার, ডাটাবেজ নাম
+│   │   ├── routes.php        # ডিফল্ট পেজ = Dashboard
+│   │   └── autoload.php      # ডাটাবেজ, সেশন, হেলপার অটো লোড
+│   ├── controllers/          # প্রতিটি মেনু = একটা কন্ট্রোলার ফাইল
+│   ├── models/               # প্রতিটি টেবিলের মতো মডেল
+│   ├── views/                # পেজের HTML
+│   │   └── template/         # হেডার/ফুটার (নেভিগেশন)
+│   └── helpers/
+│       └── cow_helper.php    # money_fmt() — টাকা ফরম্যাট
+├── database/
+│   └── cow_farm.sql          # টেবিল তৈরি + প্রাথমিক খাদ্যের ধরন
+└── system/                   # CodeIgniter কোর (সাধারণত এডিট করো না)</code></pre>
+
+		<hr>
+
+		<h2>৪. মেনু ↔ কন্ট্রোলার ↔ মডেল ↔ টেবিল</h2>
+		<div class="card">
+			<table>
+				<thead>
+					<tr>
+						<th>মেনু (URL অংশ)</th>
+						<th>কন্ট্রোলার ফাইল</th>
+						<th>মডেল</th>
+						<th>ডাটাবেজ টেবিল</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td><code>dashboard</code></td><td><code>Dashboard.php</code></td><td>একাধিক মডেল</td><td>সব টেবিল থেকে সামারি</td></tr>
+					<tr><td><code>investments</code></td><td><code>Investments.php</code></td><td><code>Investment_model</code></td><td><code>investments</code></td></tr>
+					<tr><td><code>food_types</code></td><td><code>Food_types.php</code></td><td><code>Food_type_model</code></td><td><code>food_types</code></td></tr>
+					<tr><td><code>food_purchases</code></td><td><code>Food_purchases.php</code></td><td><code>Food_purchase_model</code></td><td><code>food_purchases</code></td></tr>
+					<tr><td><code>daily_feeding</code></td><td><code>Daily_feeding.php</code></td><td><code>Daily_feeding_model</code></td><td><code>daily_feeding</code></td></tr>
+					<tr><td><code>incomes</code></td><td><code>Incomes.php</code></td><td><code>Income_model</code></td><td><code>incomes</code></td></tr>
+					<tr><td><code>other_expenses</code></td><td><code>Other_expenses.php</code></td><td><code>Other_expense_model</code></td><td><code>other_expenses</code></td></tr>
+				</tbody>
+			</table>
+		</div>
+		<p><strong>URL উদাহরণ (Laragon):</strong></p>
+		<ul class="steps">
+			<li>হোম: <code>http://cow.test/</code> বা <code>http://localhost/cow/</code></li>
+			<li>বিনিয়োগ তালিকা: <code>.../index.php/investments</code></li>
+			<li>নতুন বিনিয়োগ ফর্ম: <code>.../index.php/investments/add</code></li>
+		</ul>
+		<p>(যদি <code>index.php</code> URL থেকে লুকানো থাকে, তাহলে <code>index.php</code> ছাড়াই চলবে।)</p>
+
+		<hr>
+
+		<h2>৫. ডাটাবেজ টেবিলগুলোর মানে</h2>
+		<h3><code>food_types</code></h3>
+		<p>খাবারের <strong>ক্যাটাগরি</strong> (নাম + সাজানোর ক্রম)। <code>food_purchases</code> ও <code>daily_feeding</code> এখানের <code>id</code> ব্যবহার করে।</p>
+		<h3><code>investments</code></h3>
+		<p>তুমি খামারে <strong>কত টাকা ঢাললে</strong> — তারিখ ও ঐচ্ছিক বিবরণ।</p>
+		<h3><code>food_purchases</code></h3>
+		<p><strong>বাজার থেকে কেনা</strong> — কোন ধরনের খাবার, কত <strong>কেজি</strong>, মোট <strong>কত টাকা</strong> দিয়ে কিনলে, কবে।</p>
+		<h3><code>daily_feeding</code></h3>
+		<p><strong>নির্দিষ্ট দিনে গরু কত কেজি খেল</strong> — ধরন অনুযায়ী। এটা “ব্যবহার” ট্র্যাক; টাকার হিসাব এখানে নয়, টাকা হিসাব <code>food_purchases</code> এ।</p>
+		<h3><code>incomes</code></h3>
+		<p><strong>আয়</strong> — দুধ বিক্রি, গরু বিক্রি ইত্যাদি (টাকা + তারিখ + বিবরণ)।</p>
+		<h3><code>other_expenses</code></h3>
+		<p>খাদ্য ছাড়া <strong>অন্যান্য খরচ</strong> — চিকিৎসা, শ্রমিক, পরিবহন ইত্যাদি।</p>
+
+		<hr>
+
+		<h2>৬. ড্যাশবোর্ডের হিসাব (গুরুত্বপূর্ণ)</h2>
+		<p>ড্যাশবোর্ডে যা দেখাবে:</p>
+		<div class="card">
+			<table>
+				<thead>
+					<tr><th>দেখানো নাম</th><th>হিসাব</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>মোট বিনিয়োগ</td><td>সব <code>investments</code> এর টাকা যোগ</td></tr>
+					<tr><td>মোট খাদ্য ক্রয়</td><td>সব <code>food_purchases.total_amount</code> যোগ</td></tr>
+					<tr><td>অন্যান্য খরচ</td><td>সব <code>other_expenses</code> যোগ</td></tr>
+					<tr><td>মোট আয়</td><td>সব <code>incomes</code> যোগ</td></tr>
+					<tr><td><strong>নেট লাভ / ক্ষতি</strong></td><td><strong>মোট আয় − (খাদ্য ক্রয় + অন্যান্য খরচ)</strong></td></tr>
+				</tbody>
+			</table>
+		</div>
+		<p><strong>বিনিয়োগ</strong> আলাদা কার্ডে — এটা মূলত “কত টাকা খামারে ঢালা” ট্র্যাক করার জন্য; উপরের <strong>নেট লাভ/ক্ষতি</strong> সূত্রে বিনিয়োগ সরাসরি বাদ দেওয়া হয় না (অপারেটিং ভিউ)।</p>
+		<p><strong>দৈনিক খাদ্য (কেজি)</strong> ড্যাশবোর্ডে:</p>
+		<ul class="steps">
+			<li><strong>আজকের খাদ্য</strong> — আজকের তারিখের <code>daily_feeding</code> এন্ট্রি</li>
+			<li><strong>গত ৩০ দিন</strong> — ধরন অনুযায়ী মোট কেজি</li>
+			<li><strong>সাম্প্রতিক এন্ট্রি</strong> — শেষ কয়েকটা রেকর্ড</li>
+		</ul>
+
+		<hr>
+
+		<h2>৭. নতুন ইউজার — কাজের ক্রম (ডেমো ওয়ার্কফ্লো)</h2>
+		<ol class="steps">
+			<li><strong>প্রথমে</strong> <code>database/cow_farm.sql</code> ইম্পোর্ট করে ডাটাবেজ তৈরি করো।</li>
+			<li><code>application/config/database.php</code> এ MySQL ইউজার/পাসওয়ার্ড ঠিক করো।</li>
+			<li>সাইট খুলে <strong>ড্যাশবোর্ড</strong> দেখো।</li>
+			<li><strong>খাদ্যের ধরন</strong> — প্রয়োজনে নতুন ধরন যোগ করো (SQL এ ইতিমধ্যে কিছু আছে)।</li>
+			<li><strong>খাদ্য ক্রয়</strong> — যখন খাবার কিনবে, এখানে এন্ট্রি দাও।</li>
+			<li>প্রতিদিন <strong>দৈনিক খাদ্য</strong> — কোন খাবার কত কেজি খরচ হলো লিখো।</li>
+			<li>দুধ/গরু বিক্রি হলে <strong>আয়</strong> এ যোগ করো।</li>
+			<li>ডাক্তার/শ্রমিক খরচ হলে <strong>অন্যান্য খরচ</strong> এ দাও।</li>
+			<li>যে টাকা খামারে বিনিয়োগ হিসেবে ঢালছো সেটা <strong>বিনিয়োগ</strong> এ রাখো।</li>
+		</ol>
+		<p>এভাবে ডেটা পূর্ণ হলে ড্যাশবোর্ডের সংখ্যাগুলো অর্থবহ হয়ে উঠবে।</p>
+
+		<hr>
+
+		<h2>৮. কোডে একটা পেজ কীভাবে বানানো (উদাহরণ)</h2>
+		<p>যেমন <strong>বিনিয়োগ তালিকা</strong>:</p>
+		<ol class="steps">
+			<li>ব্রাউজার <code>Investments</code> কন্ট্রোলারের <code>index</code> মেথড কল করে।</li>
+			<li><code>Investment_model::get_all()</code> ডাটাবেজ থেকে সব রো আনে।</li>
+			<li>কন্ট্রোলার <code>views/investments/index.php</code> লোড করে।</li>
+			<li>ভিউতে টেবিল HTML এ দেখায়।</li>
+		</ol>
+		<p>নতুন এন্ট্রি:</p>
+		<ul class="steps">
+			<li><code>investments/add</code> → GET এ ফর্ম দেখায়, POST এ ভ্যালিডেশন → <code>Investment_model::create()</code> → রিডাইরেক্ট তালিকায়।</li>
+		</ul>
+
+		<hr>
+
+		<h2>৯. ছোট টিপস</h2>
+		<ul class="steps">
+			<li><strong>খাদ্য ক্রয়</strong> = টাকায় কত খরচ। <strong>দৈনিক খাদ্য</strong> = কেজিতে কত খেয়েছে। দুটোই দরকারি।</li>
+			<li>একই দিনে এক ধরনের খাবারের জন্য একাধিক সারি থাকতে পারে (সকাল/বিকাল আলাদা লিখতে চাইলে)।</li>
+			<li><code>food_types</code> মুছতে গেলে যদি সেই ধরন ব্যবহারে থাকে, ডাটাবেজ বাধা দিতে পারে (foreign key)।</li>
+		</ul>
+
+		<hr>
+
+		<h2>১০. সমস্যা হলে</h2>
+		<ul class="steps">
+			<li>ডাটাবেজ কানেকশন চেক করো (<code>database.php</code>)।</li>
+			<li><code>cow_farm</code> ডাটাবেজ ও টেবিল ইম্পোর্ট হয়েছে কিনা দেখো।</li>
+			<li>PHP ভার্সন 8.x এ CodeIgniter 3 এর কিছু ডিপ্রিকেশন প্যাচ করা আছে <code>system/</code> ফোল্ডারে।</li>
+		</ul>
+
+		<footer>
+			<p class="note">এই HTML ফাইল: <span class="file-path">docs/PROJEKT_GUIDE_BN.html</span> — ব্রাউজারে খুলতে: <code>http://localhost/cow/docs/PROJEKT_GUIDE_BN.html</code> (Laragon অনুযায়ী URL ঠিক করো)।</p>
+		</footer>
+	</div>
+</body>
+</html>
