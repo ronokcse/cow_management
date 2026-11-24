@@ -17,7 +17,7 @@ class Food_purchases extends Auth_Controller
 		$start = $filter_meta['start'];
 		$end = $filter_meta['end'];
 		$data = array(
-			'title' => 'খাদ্য ক্রয়',
+			'title' => t('food_purchases'),
 			'rows' => $this->food_purchase_model->get_all_with_type_filtered($start, $end),
 			'filter_meta' => $filter_meta,
 			'form_action' => site_url('food_purchases'),
@@ -30,16 +30,16 @@ class Food_purchases extends Auth_Controller
 
 	public function add()
 	{
-		$this->form_validation->set_rules('food_type_id', 'খাদ্যের ধরন', 'required|integer');
-		$this->form_validation->set_rules('quantity_kg', 'পরিমাণ (কেজি)', 'required|numeric');
-		$this->form_validation->set_rules('total_amount', 'মোট টাকা', 'required|numeric');
-		$this->form_validation->set_rules('purchase_date', 'ক্রয়ের তারিখ', 'required');
-		$this->form_validation->set_rules('notes', 'নোট', 'trim|max_length[255]');
+		$this->form_validation->set_rules('food_type_id', t('type'), 'required|integer');
+		$this->form_validation->set_rules('quantity_kg', t('kg'), 'required|numeric');
+		$this->form_validation->set_rules('total_amount', t('total_amount'), 'required|numeric');
+		$this->form_validation->set_rules('purchase_date', t('date'), 'required');
+		$this->form_validation->set_rules('notes', t('notes'), 'trim|max_length[255]');
 
 		if ($this->form_validation->run() === FALSE)
 		{
 			$data = array(
-				'title' => 'নতুন খাদ্য ক্রয়',
+				'title' => t('new_food_purchase'),
 				'food_types' => $this->food_type_model->get_all(),
 			);
 			$this->load->view('template/header', $data);
@@ -55,7 +55,7 @@ class Food_purchases extends Auth_Controller
 			'purchase_date' => $this->input->post('purchase_date', TRUE),
 			'notes' => $this->input->post('notes', TRUE) ?: NULL,
 		));
-		$this->session->set_flashdata('success', 'খাদ্য ক্রয় সেভ হয়েছে।');
+		$this->session->set_flashdata('success', t('saved_msg'));
 		redirect('food_purchases');
 	}
 
@@ -67,16 +67,16 @@ class Food_purchases extends Auth_Controller
 			show_404();
 		}
 
-		$this->form_validation->set_rules('food_type_id', 'খাদ্যের ধরন', 'required|integer');
-		$this->form_validation->set_rules('quantity_kg', 'পরিমাণ (কেজি)', 'required|numeric');
-		$this->form_validation->set_rules('total_amount', 'মোট টাকা', 'required|numeric');
-		$this->form_validation->set_rules('purchase_date', 'ক্রয়ের তারিখ', 'required');
-		$this->form_validation->set_rules('notes', 'নোট', 'trim|max_length[255]');
+		$this->form_validation->set_rules('food_type_id', t('type'), 'required|integer');
+		$this->form_validation->set_rules('quantity_kg', t('kg'), 'required|numeric');
+		$this->form_validation->set_rules('total_amount', t('total_amount'), 'required|numeric');
+		$this->form_validation->set_rules('purchase_date', t('date'), 'required');
+		$this->form_validation->set_rules('notes', t('notes'), 'trim|max_length[255]');
 
 		if ($this->form_validation->run() === FALSE)
 		{
 			$data = array(
-				'title' => 'খাদ্য ক্রয় সম্পাদনা',
+				'title' => t('edit_food_purchase'),
 				'row' => $row,
 				'food_types' => $this->food_type_model->get_all(),
 			);
@@ -93,14 +93,14 @@ class Food_purchases extends Auth_Controller
 			'purchase_date' => $this->input->post('purchase_date', TRUE),
 			'notes' => $this->input->post('notes', TRUE) ?: NULL,
 		));
-		$this->session->set_flashdata('success', 'আপডেট হয়েছে।');
+		$this->session->set_flashdata('success', t('updated_msg'));
 		redirect('food_purchases');
 	}
 
 	public function delete($id)
 	{
 		$this->food_purchase_model->delete($id);
-		$this->session->set_flashdata('success', 'মুছে ফেলা হয়েছে।');
+		$this->session->set_flashdata('success', t('deleted_msg'));
 		redirect('food_purchases');
 	}
 }

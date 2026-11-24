@@ -17,7 +17,7 @@ class Daily_feeding extends Auth_Controller
 		$start = $filter_meta['start'];
 		$end = $filter_meta['end'];
 		$data = array(
-			'title' => 'দৈনিক খাদ্য ব্যবহার',
+			'title' => t('daily_feeding'),
 			'rows' => $this->daily_feeding_model->get_all_with_type_filtered($start, $end),
 			'filter_meta' => $filter_meta,
 			'form_action' => site_url('daily_feeding'),
@@ -30,15 +30,15 @@ class Daily_feeding extends Auth_Controller
 
 	public function add()
 	{
-		$this->form_validation->set_rules('food_type_id', 'খাদ্যের ধরন', 'required|integer');
-		$this->form_validation->set_rules('quantity_kg', 'পরিমাণ (কেজি)', 'required|numeric');
-		$this->form_validation->set_rules('feeding_date', 'তারিখ', 'required');
-		$this->form_validation->set_rules('notes', 'নোট', 'trim|max_length[255]');
+		$this->form_validation->set_rules('food_type_id', t('type'), 'required|integer');
+		$this->form_validation->set_rules('quantity_kg', t('kg'), 'required|numeric');
+		$this->form_validation->set_rules('feeding_date', t('date'), 'required');
+		$this->form_validation->set_rules('notes', t('notes'), 'trim|max_length[255]');
 
 		if ($this->form_validation->run() === FALSE)
 		{
 			$data = array(
-				'title' => 'দৈনিক খাদ্য এন্ট্রি',
+				'title' => t('new_daily_feeding'),
 				'food_types' => $this->food_type_model->get_all(),
 			);
 			$this->load->view('template/header', $data);
@@ -53,7 +53,7 @@ class Daily_feeding extends Auth_Controller
 			'feeding_date' => $this->input->post('feeding_date', TRUE),
 			'notes' => $this->input->post('notes', TRUE) ?: NULL,
 		));
-		$this->session->set_flashdata('success', 'দৈনিক খাদ্য সেভ হয়েছে।');
+		$this->session->set_flashdata('success', t('saved_msg'));
 		redirect('daily_feeding');
 	}
 
@@ -65,15 +65,15 @@ class Daily_feeding extends Auth_Controller
 			show_404();
 		}
 
-		$this->form_validation->set_rules('food_type_id', 'খাদ্যের ধরন', 'required|integer');
-		$this->form_validation->set_rules('quantity_kg', 'পরিমাণ (কেজি)', 'required|numeric');
-		$this->form_validation->set_rules('feeding_date', 'তারিখ', 'required');
-		$this->form_validation->set_rules('notes', 'নোট', 'trim|max_length[255]');
+		$this->form_validation->set_rules('food_type_id', t('type'), 'required|integer');
+		$this->form_validation->set_rules('quantity_kg', t('kg'), 'required|numeric');
+		$this->form_validation->set_rules('feeding_date', t('date'), 'required');
+		$this->form_validation->set_rules('notes', t('notes'), 'trim|max_length[255]');
 
 		if ($this->form_validation->run() === FALSE)
 		{
 			$data = array(
-				'title' => 'দৈনিক খাদ্য সম্পাদনা',
+				'title' => t('edit_daily_feeding'),
 				'row' => $row,
 				'food_types' => $this->food_type_model->get_all(),
 			);
@@ -89,14 +89,14 @@ class Daily_feeding extends Auth_Controller
 			'feeding_date' => $this->input->post('feeding_date', TRUE),
 			'notes' => $this->input->post('notes', TRUE) ?: NULL,
 		));
-		$this->session->set_flashdata('success', 'আপডেট হয়েছে।');
+		$this->session->set_flashdata('success', t('updated_msg'));
 		redirect('daily_feeding');
 	}
 
 	public function delete($id)
 	{
 		$this->daily_feeding_model->delete($id);
-		$this->session->set_flashdata('success', 'মুছে ফেলা হয়েছে।');
+		$this->session->set_flashdata('success', t('deleted_msg'));
 		redirect('daily_feeding');
 	}
 }

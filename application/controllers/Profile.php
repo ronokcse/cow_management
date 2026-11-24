@@ -15,13 +15,13 @@ class Profile extends Auth_Controller
 		$user = $this->user_model->get_by_id($user_id);
 
 		$data = array(
-			'title' => 'প্রোফাইল',
+			'title' => t('profile'),
 			'user'  => $user,
 		);
 
 		$this->load->view('template/header', $data);
 		$this->load->view('profile/index', $data);
-		$this->load->view('template/footer');
+		$this->load->view('template/footer', $data);
 	}
 
 	public function update_name()
@@ -36,13 +36,13 @@ class Profile extends Auth_Controller
 
 		if ($name === '')
 		{
-			$this->session->set_flashdata('error', 'নাম খালি রাখা যাবে না।');
+			$this->session->set_flashdata('error', t('err_name_empty'));
 			redirect('profile');
 		}
 
 		$this->user_model->update_profile($user_id, array('name' => $name));
 		$this->session->set_userdata('user_name', $name);
-		$this->session->set_flashdata('success', 'নাম সফলভাবে পরিবর্তন হয়েছে।');
+		$this->session->set_flashdata('success', t('msg_name_updated'));
 		redirect('profile');
 	}
 
@@ -62,25 +62,25 @@ class Profile extends Auth_Controller
 
 		if (!$user || !password_verify($current_password, $user->password))
 		{
-			$this->session->set_flashdata('error', 'বর্তমান পাসওয়ার্ড সঠিক নয়।');
+			$this->session->set_flashdata('error', t('err_curr_pwd'));
 			redirect('profile');
 		}
 
 		if (strlen($new_password) < 6)
 		{
-			$this->session->set_flashdata('error', 'নতুন পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।');
+			$this->session->set_flashdata('error', t('err_pwd_len'));
 			redirect('profile');
 		}
 
 		if ($new_password !== $confirm_password)
 		{
-			$this->session->set_flashdata('error', 'নতুন পাসওয়ার্ড এবং কনফার্ম পাসওয়ার্ড মিলছে না।');
+			$this->session->set_flashdata('error', t('err_pwd_mismatch'));
 			redirect('profile');
 		}
 
 		$hash = password_hash($new_password, PASSWORD_DEFAULT);
 		$this->user_model->update_profile($user_id, array('password' => $hash));
-		$this->session->set_flashdata('success', 'পাসওয়ার্ড সফলভাবে পরিবর্তন হয়েছে।');
+		$this->session->set_flashdata('success', t('msg_pwd_updated'));
 		redirect('profile');
 	}
 }

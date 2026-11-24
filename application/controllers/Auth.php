@@ -38,11 +38,11 @@ class Auth extends CI_Controller
 					'user_name' => $user->name,
 					'username'  => $user->username,
 				));
-				$this->session->set_flashdata('success', 'সফলভাবে লগইন হয়েছে।');
+				$this->session->set_flashdata('success', t('login_success'));
 				redirect('dashboard');
 			}
 
-			$this->session->set_flashdata('error', 'ইউজারনেম অথবা পাসওয়ার্ড সঠিক নয়।');
+			$this->session->set_flashdata('error', t('login_error'));
 			redirect('auth/login');
 		}
 
@@ -52,7 +52,7 @@ class Auth extends CI_Controller
 	public function logout()
 	{
 		$this->session->unset_userdata(array('user_id', 'user_name', 'username'));
-		$this->session->set_flashdata('success', 'সফলভাবে লগআউট হয়েছে।');
+		$this->session->set_flashdata('success', t('logout_success'));
 		redirect('auth/login');
 	}
 }
