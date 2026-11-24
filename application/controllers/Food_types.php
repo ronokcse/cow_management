@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Food_types extends CI_Controller
+class Food_types extends Auth_Controller
 {
 	public function __construct()
 	{

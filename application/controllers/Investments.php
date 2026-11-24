@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Investments extends CI_Controller
+class Investments extends Auth_Controller
 {
 	public function __construct()
 	{

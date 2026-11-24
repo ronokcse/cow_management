@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Daily_feeding extends CI_Controller
+class Daily_feeding extends Auth_Controller
 {
 	public function __construct()
 	{

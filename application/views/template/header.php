@@ -35,6 +35,8 @@ $cur = strtolower((string) $CI->router->class);
 					<li class="nav-item"><a class="nav-link <?php echo $cur === 'daily_feeding' ? 'active' : ''; ?>" href="<?php echo site_url('daily_feeding'); ?>">দৈনিক খাদ্য</a></li>
 					<li class="nav-item"><a class="nav-link <?php echo $cur === 'incomes' ? 'active' : ''; ?>" href="<?php echo site_url('incomes'); ?>">আয়</a></li>
 					<li class="nav-item"><a class="nav-link <?php echo $cur === 'other_expenses' ? 'active' : ''; ?>" href="<?php echo site_url('other_expenses'); ?>">অন্যান্য খরচ</a></li>
+					<li class="nav-item"><a class="nav-link <?php echo $cur === 'profile' ? 'active' : ''; ?>" href="<?php echo site_url('profile'); ?>">প্রোফাইল</a></li>
+					<li class="nav-item ms-lg-2"><a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('auth/logout'); ?>">লগআউট</a></li>
 				</ul>
 			</div>
 		</div>

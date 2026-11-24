@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Other_expenses extends CI_Controller
+class Other_expenses extends Auth_Controller
 {
 	public function __construct()
 	{
