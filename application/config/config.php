@@ -25,9 +25,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 if (isset($_SERVER['HTTP_HOST']))
 {
-	$protocol = (! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+	$is_https = (! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+		|| (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+		|| (isset($_SERVER['HTTP_CF_VISITOR']) && strpos($_SERVER['HTTP_CF_VISITOR'], 'https') !== FALSE);
+	$protocol = $is_https ? 'https://' : 'http://';
 	$script = isset($_SERVER['SCRIPT_NAME']) ? str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']) : '/';
-	$config['base_url'] = $protocol.$_SERVER['HTTP_HOST'].$script;
+
+	//Change your url here
+	$config['base_url'] = $protocol.$_SERVER['HTTP_HOST'].$script; // change your base_url there
+	//
 }
 else
 {

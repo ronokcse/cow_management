@@ -146,6 +146,20 @@ if ( ! function_exists('t'))
 			'err_pwd_mismatch' => array('bn' => 'নতুন পাসওয়ার্ড এবং কনফার্ম পাসওয়ার্ড মিলছে না।', 'en' => 'New password and confirmation do not match.'),
 			'msg_pwd_updated' => array('bn' => 'পাসওয়ার্ড সফলভাবে পরিবর্তন হয়েছে।', 'en' => 'Password changed successfully.'),
 			'documentation' => array('bn' => 'ডকুমেন্টেশন', 'en' => 'Documentation'),
+
+			// Smart Assistant / Chatbot
+			'bot_title' => array('bn' => 'স্মার্ট খামার সহকারী', 'en' => 'Smart Farm Assistant'),
+			'bot_sub' => array('bn' => 'লিখেই অটোমেটিক হিসাব যোগ করুন', 'en' => 'Type naturally to add records'),
+			'bot_placeholder' => array('bn' => 'লিখুন: দুধ বিক্রি ১৫০০ টাকা / ৫০ কেজি ভুসি কিনলাম ২২০০ টাকা...', 'en' => 'Type: Milk sale 1500 tk / Bought 50 kg bran 2200 tk...'),
+			'bot_send' => array('bn' => 'পাঠান', 'en' => 'Send'),
+			'bot_welcome' => array(
+				'bn' => 'আসসালামু আলাইকুম! ফর্ম পূরণ না করে এখানে বাংলা, বাংলিশ বা ইংরেজিতে লিখলেই আমি অটোমেটিক সঠিক টেবিলে ডেটা যোগ করে দেবো। নিচের যেকোনো বাটনে ক্লিক করে বা নিজে লিখে টেস্ট করুন:',
+				'en' => 'Hello! Type naturally in Bangla, Banglish, or English and I will automatically save the record to the right table. Click an example chip below or type your own:'
+			),
+			'bot_quick_bar_title' => array('bn' => 'স্মার্ট কুইক এন্ট্রি (চ্যাটবট)', 'en' => 'Smart Quick Entry (Assistant)'),
+			'bot_quick_bar_sub' => array('bn' => 'যেকোনো হিসাব মুখে বলার মতো লিখুন — অটোমেটিক সঠিক জায়গায় সেভ হয়ে যাবে!', 'en' => 'Type any transaction in plain language — it saves automatically to the right module!'),
+			'bot_view_record' => array('bn' => 'তালিকায় দেখুন', 'en' => 'View in List'),
+			'bot_refresh_page' => array('bn' => 'পেজ রিফ্রেশ করুন', 'en' => 'Refresh Page'),
 		);
 
 		$lang = cow_lang();

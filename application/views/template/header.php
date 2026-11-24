@@ -16,7 +16,8 @@ $user_name = $CI->session->userdata('user_name') ?: 'Admin';
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-	<link href="<?php echo base_url('assets/css/theme.css'); ?>" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+	<link href="<?php echo base_url('assets/css/theme.css?v='.(int)@filemtime(FCPATH.'assets/css/theme.css')); ?>" rel="stylesheet">
 </head>
 <body>
 <div class="app-shell">

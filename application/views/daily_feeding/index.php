@@ -19,7 +19,7 @@
 </div>
 <div class="table-wrap">
 	<div class="table-responsive">
-		<table class="table table-hover mb-0">
+		<table class="table table-hover mb-0 <?php echo ! empty($rows) ? 'cow-datatable' : ''; ?>">
 			<thead>
 				<tr>
 					<th><?php echo t('date'); ?></th>
